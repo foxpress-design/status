@@ -21,6 +21,7 @@ sites:
     check: "tcp-ping"
 
 status-website:
+  publish: true
   cname: status.foxpress.cloud
   name: "foxpress.cloud Status"
   logoUrl: ""
