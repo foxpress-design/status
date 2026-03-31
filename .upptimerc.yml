@@ -10,6 +10,7 @@ sites:
     check: "tcp-ping"
   - name: cPanel
     url: https://51.79.99.22:2083
+    __dangerous__disable_verify_peer: true
     expectedStatusCodes:
       - 200
       - 301
