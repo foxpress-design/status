@@ -27,6 +27,7 @@ status-website:
   name: "foxpress.cloud Status"
   logoUrl: ""
   theme: dark
+  footerLink: false
   navbar:
     - title: Status
       href: /
