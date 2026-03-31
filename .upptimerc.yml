@@ -22,18 +22,8 @@ sites:
     check: "tcp-ping"
 
 status-website:
-  publish: true
   cname: status.foxpress.cloud
-  name: "foxpress.cloud Status"
-  logoUrl: ""
-  theme: dark
-  footerLink: false
-  css: "custom-theme.css"
-  navbar:
-    - title: Status
-      href: /
-    - title: foxpress.cloud
-      href: https://foxpress.cloud
+  skipGeneratingWebsite: true
 
 notifications:
   - type: ntfy

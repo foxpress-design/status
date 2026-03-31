@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>foxpress.cloud Status</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-card: #1a1d27;
+    --bg-hover: #1e2130;
+    --border: rgba(255,255,255,0.07);
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-muted: #64748b;
+    --green: #00d4aa;
+    --green-bg: rgba(0,212,170,0.08);
+    --green-border: rgba(0,212,170,0.2);
+    --red: #ff6b6b;
+    --red-bg: rgba(255,107,107,0.08);
+    --red-border: rgba(255,107,107,0.2);
+    --yellow: #fbbf24;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* Nav */
+  .nav {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 24px;
+  }
+  .nav-brand {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: var(--text); }
+
+  /* Main */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* Overall status banner */
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .banner.ok {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+  }
+  .banner.down {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+  }
+  .banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .banner.ok .banner-dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .banner.down .banner-dot { background: var(--red); animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 4px var(--red); }
+    50% { box-shadow: 0 0 16px var(--red); }
+  }
+
+  /* Section headers */
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* Monitor list */
+  .monitors {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .monitor {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+    gap: 14px;
+  }
+  .monitor:last-child { border-bottom: none; }
+  .monitor:hover { background: var(--bg-hover); }
+
+  .monitor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .monitor-dot.up { background: var(--green); box-shadow: 0 0 6px rgba(0,212,170,0.4); }
+  .monitor-dot.down { background: var(--red); box-shadow: 0 0 6px rgba(255,107,107,0.4); }
+  .monitor-dot.degraded { background: var(--yellow); box-shadow: 0 0 6px rgba(251,191,36,0.4); }
+
+  .monitor-info { flex: 1; min-width: 0; }
+  .monitor-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .monitor-url {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .monitor-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .monitor-uptime {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .monitor-uptime.up { color: var(--green); }
+  .monitor-uptime.down { color: var(--red); }
+  .monitor-uptime.degraded { color: var(--yellow); }
+
+  .monitor-response {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* Uptime bars */
+  .monitor-bars {
+    display: flex;
+    gap: 1px;
+    height: 24px;
+    align-items: flex-end;
+  }
+  .bar {
+    width: 3px;
+    border-radius: 1px;
+    min-height: 4px;
+  }
+  .bar.up { background: var(--green); height: 100%; opacity: 0.6; }
+  .bar.down { background: var(--red); height: 100%; }
+  .bar.none { background: rgba(255,255,255,0.05); height: 40%; }
+
+  /* Incidents */
+  .incident {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .incident-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .incident-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .incident-meta {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 6px;
+    margin-left: 18px;
+  }
+
+  .no-incidents {
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-muted);
+  }
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-top-color: var(--text-dim);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Last updated */
+  .updated {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">foxpress.cloud</a>
+    <a href="https://foxpress.cloud">Home</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="status-banner" class="loading">
+    <div class="spinner"></div>
+    Loading status...
+  </div>
+
+  <div id="monitors-section" style="display:none">
+    <div class="section-title">Services</div>
+    <div id="monitors" class="monitors"></div>
+  </div>
+
+  <div id="incidents-section" style="display:none">
+    <div class="section-title">Active Incidents</div>
+    <div id="incidents"></div>
+  </div>
+
+  <div id="updated" class="updated"></div>
+</div>
+
+<div class="footer">
+  Powered by foxpress.cloud monitoring
+</div>
+
+<script>
+const OWNER = 'foxpress-design';
+const REPO = 'status';
+const API_BASE = `https://raw.githubusercontent.com/${OWNER}/${REPO}/master`;
+
+// Display-friendly names (hide raw IPs/ports from clients)
+const DISPLAY_NAMES = {
+  'foxpress.cloud': { name: 'Website', show: true },
+  'Server': { name: 'Server', show: true },
+  'cPanel': { name: 'Control Panel', show: true },
+  'Email (SMTP)': { name: 'Email', show: true }
+};
+
+async function loadStatus() {
+  try {
+    const [summaryRes, issuesRes] = await Promise.all([
+      fetch(`${API_BASE}/history/summary.json`),
+      fetch(`https://api.github.com/repos/${OWNER}/${REPO}/issues?state=open&labels=status`)
+    ]);
+
+    const summary = await summaryRes.json();
+    const issues = await issuesRes.json();
+
+    renderBanner(summary);
+    renderMonitors(summary);
+    renderIncidents(issues);
+
+    document.getElementById('updated').textContent =
+      'Last checked ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  } catch (err) {
+    document.getElementById('status-banner').innerHTML =
+      '<div class="banner down"><span class="banner-dot"></span>Unable to load status data</div>';
+    console.error(err);
+  }
+}
+
+function renderBanner(summary) {
+  const allUp = summary.every(s => parseFloat(s.uptimeDay) > 99);
+  const anyDown = summary.some(s => s.status === 'down' && parseFloat(s.uptimeDay) < 50);
+  const el = document.getElementById('status-banner');
+
+  if (anyDown) {
+    el.innerHTML = '<div class="banner down"><span class="banner-dot"></span>Some services are experiencing issues</div>';
+  } else if (!allUp) {
+    el.innerHTML = '<div class="banner down"><span class="banner-dot"></span>Some services are degraded</div>';
+  } else {
+    el.innerHTML = '<div class="banner ok"><span class="banner-dot"></span>All systems operational</div>';
+  }
+}
+
+function renderMonitors(summary) {
+  const container = document.getElementById('monitors');
+  const section = document.getElementById('monitors-section');
+  section.style.display = '';
+
+  summary.forEach(site => {
+    const display = DISPLAY_NAMES[site.name] || { name: site.name, show: true };
+    if (!display.show) return;
+
+    const uptime = parseFloat(site.uptimeDay);
+    const statusClass = uptime >= 99.5 ? 'up' : uptime >= 50 ? 'degraded' : 'down';
+    const responseTime = site.timeDay > 0 ? `${Math.round(site.timeDay)}ms` : '';
+
+    // Build uptime bar from dailyMinutesDown (last 30 days)
+    const bars = buildBars(site.dailyMinutesDown || {});
+
+    const div = document.createElement('div');
+    div.className = 'monitor';
+    div.innerHTML = `
+      <span class="monitor-dot ${statusClass}"></span>
+      <div class="monitor-info">
+        <div class="monitor-name">${display.name}</div>
+      </div>
+      <div class="monitor-bars">${bars}</div>
+      <div class="monitor-stats">
+        <span class="monitor-uptime ${statusClass}">${site.uptimeDay}</span>
+        ${responseTime ? `<span class="monitor-response">${responseTime}</span>` : ''}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function buildBars(dailyDown) {
+  const bars = [];
+  const today = new Date();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    const down = dailyDown[key] || 0;
+    if (down === 0) {
+      bars.push('<span class="bar up"></span>');
+    } else if (down > 0) {
+      bars.push('<span class="bar down"></span>');
+    } else {
+      bars.push('<span class="bar none"></span>');
+    }
+  }
+  return bars.join('');
+}
+
+function renderIncidents(issues) {
+  const container = document.getElementById('incidents');
+  const section = document.getElementById('incidents-section');
+
+  // Filter for actual incidents (not just any issue)
+  const incidents = issues.filter(i =>
+    i.labels && i.labels.some(l => l.name === 'status')
+  );
+
+  if (incidents.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = '';
+  incidents.forEach(issue => {
+    const div = document.createElement('div');
+    div.className = 'incident';
+    const date = new Date(issue.created_at).toLocaleDateString([], {
+      month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    div.innerHTML = `
+      <div class="incident-title"><span class="dot"></span>${issue.title}</div>
+      <div class="incident-meta">Opened ${date}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+loadStatus();
+// Refresh every 5 minutes
+setInterval(loadStatus, 300000);
+</script>
+</body>
+</html>
