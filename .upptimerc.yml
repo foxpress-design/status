@@ -9,13 +9,9 @@ sites:
     port: 443
     check: "tcp-ping"
   - name: cPanel
-    url: https://51.79.99.22:2083
-    __dangerous__disable_verify_peer: true
-    expectedStatusCodes:
-      - 200
-      - 301
-      - 302
-      - 401
+    url: 51.79.99.22
+    port: 2083
+    check: "tcp-ping"
   - name: Email (SMTP)
     url: 51.79.99.22
     port: 25

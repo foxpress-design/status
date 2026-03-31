@@ -3,25 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>foxpress.cloud Status</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --bg-card: #1a1d27;
-    --bg-hover: #1e2130;
-    --border: rgba(255,255,255,0.07);
-    --text: #e2e8f0;
-    --text-dim: #94a3b8;
-    --text-muted: #64748b;
-    --green: #00d4aa;
-    --green-bg: rgba(0,212,170,0.08);
-    --green-border: rgba(0,212,170,0.2);
-    --red: #ff6b6b;
-    --red-bg: rgba(255,107,107,0.08);
-    --red-border: rgba(255,107,107,0.2);
-    --yellow: #fbbf24;
+    --bg: #f8f9fb;
+    --bg-card: #ffffff;
+    --bg-hover: #f3f4f6;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a1a2e;
+    --text-dim: #4b5563;
+    --text-muted: #9ca3af;
+    --green: #059669;
+    --green-bg: rgba(5,150,105,0.06);
+    --green-border: rgba(5,150,105,0.18);
+    --red: #dc2626;
+    --red-bg: rgba(220,38,38,0.06);
+    --red-border: rgba(220,38,38,0.18);
+    --yellow: #d97706;
+    --bar-up: #059669;
+    --bar-up-opacity: 0.5;
+    --bar-none-bg: rgba(0,0,0,0.06);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --radius: 12px;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1117;
+      --bg-card: #1a1d27;
+      --bg-hover: #1e2130;
+      --border: rgba(255,255,255,0.07);
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --text-muted: #64748b;
+      --green: #00d4aa;
+      --green-bg: rgba(0,212,170,0.08);
+      --green-border: rgba(0,212,170,0.2);
+      --red: #ff6b6b;
+      --red-bg: rgba(255,107,107,0.08);
+      --red-border: rgba(255,107,107,0.2);
+      --yellow: #fbbf24;
+      --bar-up: #00d4aa;
+      --bar-up-opacity: 0.6;
+      --bar-none-bg: rgba(255,255,255,0.05);
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--bg);
@@ -31,7 +60,6 @@
     min-height: 100vh;
   }
 
-  /* Nav */
   .nav {
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
@@ -60,14 +88,12 @@
   }
   .nav a:hover { color: var(--text); }
 
-  /* Main */
   .wrap {
     max-width: 720px;
     margin: 0 auto;
     padding: 32px 24px 60px;
   }
 
-  /* Overall status banner */
   .banner {
     display: flex;
     align-items: center;
@@ -102,7 +128,6 @@
     50% { box-shadow: 0 0 16px var(--red); }
   }
 
-  /* Section headers */
   .section-title {
     font-size: 12px;
     font-weight: 600;
@@ -112,13 +137,13 @@
     margin-bottom: 12px;
   }
 
-  /* Monitor list */
   .monitors {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 32px;
+    box-shadow: var(--shadow);
   }
   .monitor {
     display: flex;
@@ -137,23 +162,15 @@
     border-radius: 50%;
     flex-shrink: 0;
   }
-  .monitor-dot.up { background: var(--green); box-shadow: 0 0 6px rgba(0,212,170,0.4); }
-  .monitor-dot.down { background: var(--red); box-shadow: 0 0 6px rgba(255,107,107,0.4); }
-  .monitor-dot.degraded { background: var(--yellow); box-shadow: 0 0 6px rgba(251,191,36,0.4); }
+  .monitor-dot.up { background: var(--green); box-shadow: 0 0 6px color-mix(in srgb, var(--green) 40%, transparent); }
+  .monitor-dot.down { background: var(--red); box-shadow: 0 0 6px color-mix(in srgb, var(--red) 40%, transparent); }
+  .monitor-dot.degraded { background: var(--yellow); box-shadow: 0 0 6px color-mix(in srgb, var(--yellow) 40%, transparent); }
 
   .monitor-info { flex: 1; min-width: 0; }
   .monitor-name {
     font-weight: 500;
     font-size: 15px;
     color: var(--text);
-  }
-  .monitor-url {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .monitor-stats {
@@ -178,7 +195,6 @@
     text-align: right;
   }
 
-  /* Uptime bars */
   .monitor-bars {
     display: flex;
     gap: 1px;
@@ -190,17 +206,17 @@
     border-radius: 1px;
     min-height: 4px;
   }
-  .bar.up { background: var(--green); height: 100%; opacity: 0.6; }
+  .bar.up { background: var(--bar-up); height: 100%; opacity: var(--bar-up-opacity); }
   .bar.down { background: var(--red); height: 100%; }
-  .bar.none { background: rgba(255,255,255,0.05); height: 40%; }
+  .bar.none { background: var(--bar-none-bg); height: 40%; }
 
-  /* Incidents */
   .incident {
     background: var(--bg-card);
-    border: 1px solid var(--border);
+    border: 1px solid var(--red-border);
     border-radius: var(--radius);
     padding: 16px 20px;
     margin-bottom: 12px;
+    box-shadow: var(--shadow);
   }
   .incident-title {
     display: flex;
@@ -208,6 +224,7 @@
     gap: 10px;
     font-weight: 600;
     font-size: 15px;
+    color: var(--red);
   }
   .incident-title .dot {
     width: 8px;
@@ -222,13 +239,6 @@
     margin-left: 18px;
   }
 
-  .no-incidents {
-    color: var(--text-muted);
-    font-size: 14px;
-    padding: 4px 0;
-  }
-
-  /* Footer */
   .footer {
     text-align: center;
     padding: 24px;
@@ -236,7 +246,6 @@
     font-size: 12px;
   }
 
-  /* Loading */
   .loading {
     text-align: center;
     padding: 60px 0;
@@ -253,12 +262,18 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Last updated */
   .updated {
     text-align: center;
     color: var(--text-muted);
     font-size: 12px;
     margin-bottom: 32px;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 24px 16px 48px; }
+    .nav { padding: 0 16px; }
+    .monitor { padding: 14px 16px; }
+    .monitor-bars { display: none; }
   }
 </style>
 </head>
@@ -277,14 +292,14 @@
     Loading status...
   </div>
 
-  <div id="monitors-section" style="display:none">
-    <div class="section-title">Services</div>
-    <div id="monitors" class="monitors"></div>
-  </div>
-
   <div id="incidents-section" style="display:none">
     <div class="section-title">Active Incidents</div>
     <div id="incidents"></div>
+  </div>
+
+  <div id="monitors-section" style="display:none">
+    <div class="section-title">Services</div>
+    <div id="monitors" class="monitors"></div>
   </div>
 
   <div id="updated" class="updated"></div>
@@ -299,7 +314,6 @@ const OWNER = 'foxpress-design';
 const REPO = 'status';
 const API_BASE = `https://raw.githubusercontent.com/${OWNER}/${REPO}/master`;
 
-// Display-friendly names (hide raw IPs/ports from clients)
 const DISPLAY_NAMES = {
   'foxpress.cloud': { name: 'Website', show: true },
   'Server': { name: 'Server', show: true },
@@ -347,6 +361,7 @@ function renderBanner(summary) {
 
 function renderMonitors(summary) {
   const container = document.getElementById('monitors');
+  container.innerHTML = '';
   const section = document.getElementById('monitors-section');
   section.style.display = '';
 
@@ -357,8 +372,6 @@ function renderMonitors(summary) {
     const uptime = parseFloat(site.uptimeDay);
     const statusClass = uptime >= 99.5 ? 'up' : uptime >= 50 ? 'degraded' : 'down';
     const responseTime = site.timeDay > 0 ? `${Math.round(site.timeDay)}ms` : '';
-
-    // Build uptime bar from dailyMinutesDown (last 30 days)
     const bars = buildBars(site.dailyMinutesDown || {});
 
     const div = document.createElement('div');
@@ -399,9 +412,9 @@ function buildBars(dailyDown) {
 
 function renderIncidents(issues) {
   const container = document.getElementById('incidents');
+  container.innerHTML = '';
   const section = document.getElementById('incidents-section');
 
-  // Filter for actual incidents (not just any issue)
   const incidents = issues.filter(i =>
     i.labels && i.labels.some(l => l.name === 'status')
   );
@@ -427,7 +440,6 @@ function renderIncidents(issues) {
 }
 
 loadStatus();
-// Refresh every 5 minutes
 setInterval(loadStatus, 300000);
 </script>
 </body>
