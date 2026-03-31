@@ -1,0 +1,304 @@
+/* foxpress.cloud Status Page - Custom Theme */
+
+:root {
+  --bg-primary: #0f1117;
+  --bg-secondary: #1a1d27;
+  --bg-card: #1e2130;
+  --bg-card-hover: #252838;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --green: #00d4aa;
+  --green-bg: rgba(0, 212, 170, 0.1);
+  --red: #ff6b6b;
+  --red-bg: rgba(255, 107, 107, 0.1);
+  --yellow: #fbbf24;
+  --yellow-bg: rgba(251, 191, 36, 0.1);
+  --accent: #60a5fa;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset and base */
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+/* Container */
+.container {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+
+/* Navigation */
+nav {
+  background: var(--bg-secondary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 0 !important;
+  backdrop-filter: blur(12px);
+}
+
+nav .container {
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+
+nav ul {
+  display: flex !important;
+  gap: 24px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+nav a {
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+  transition: color 0.2s !important;
+}
+
+nav a:hover, nav a[aria-current] {
+  color: var(--text-primary) !important;
+}
+
+/* Main content */
+main.container {
+  padding-top: 40px !important;
+  padding-bottom: 60px !important;
+}
+
+/* Header */
+header {
+  text-align: center !important;
+  margin-bottom: 40px !important;
+  padding: 0 !important;
+}
+
+header h1, header .title {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 8px !important;
+}
+
+/* Status indicator pills */
+header .status, header p {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px;
+  padding: 6px 16px !important;
+  border-radius: 100px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Sections */
+section {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 !important;
+  margin-bottom: 24px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow) !important;
+}
+
+/* Individual monitor rows */
+section > div, section > a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 20px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  transition: background 0.15s !important;
+  text-decoration: none !important;
+  color: var(--text-primary) !important;
+}
+
+section > div:last-child, section > a:last-child {
+  border-bottom: none !important;
+}
+
+section > div:hover, section > a:hover {
+  background: var(--bg-card-hover) !important;
+}
+
+/* Monitor name */
+section .name, section span:first-child {
+  font-weight: 500 !important;
+  font-size: 15px !important;
+}
+
+/* Uptime percentage */
+section .uptime {
+  font-family: var(--font-mono) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Status dots */
+.up, .status-up, [class*="up"] .dot, .green {
+  color: var(--green) !important;
+}
+
+.down, .status-down, [class*="down"] .dot, .red {
+  color: var(--red) !important;
+}
+
+/* Response time */
+.response-time {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+}
+
+/* Incident cards */
+section h2 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  padding: 16px 20px !important;
+  margin: 0 !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  background: var(--bg-secondary) !important;
+}
+
+/* Time range selector */
+form {
+  display: flex !important;
+  gap: 4px !important;
+  background: var(--bg-secondary) !important;
+  border-radius: 8px !important;
+  padding: 3px !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+form label {
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: var(--text-muted) !important;
+  cursor: pointer !important;
+  transition: all 0.15s !important;
+}
+
+form input:checked + label {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+form input[type="radio"] {
+  display: none !important;
+}
+
+/* Live status heading */
+.live-status h2, div > h2 {
+  background: none !important;
+  border: none !important;
+  padding: 0 0 16px !important;
+}
+
+/* Graphs/charts */
+canvas, .graph, svg.chart {
+  border-radius: 8px !important;
+}
+
+/* Loading spinner */
+.loading {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 40px !important;
+}
+
+.loading svg {
+  stroke: var(--text-muted) !important;
+}
+
+/* Footer */
+footer {
+  text-align: center !important;
+  padding: 24px !important;
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  border-top: 1px solid var(--border-color) !important;
+  margin-top: 40px !important;
+}
+
+footer a {
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+}
+
+footer a:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Links */
+a {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+/* Incident details */
+.incident {
+  padding: 16px 20px !important;
+}
+
+.incident .title {
+  font-weight: 600 !important;
+  color: var(--red) !important;
+}
+
+.incident .meta {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  margin-top: 4px !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px !important;
+  }
+
+  nav .container {
+    height: 48px;
+  }
+
+  section > div, section > a {
+    padding: 14px 16px !important;
+  }
+}

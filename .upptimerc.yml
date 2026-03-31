@@ -28,6 +28,7 @@ status-website:
   logoUrl: ""
   theme: dark
   footerLink: false
+  css: "custom-theme.css"
   navbar:
     - title: Status
       href: /
