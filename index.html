@@ -1,26 +1,434 @@
-<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1" name=viewport> <meta content=#333333 name=theme-color> <base href=/ > <link href=manifest.json rel=manifest crossorigin=use-credentials> <script>__SAPPER__={baseUrl:"",preloaded:[void 0,{}]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/service-worker.js');(function(){try{eval("async function x(){}");var main="/client/client.c8d0bea6.js"}catch(e){main="/client/legacy/client.9bac5860.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/client/shimport@2.0.5.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> <link href=client/client-31a52aa5.css rel=stylesheet><link href=client/createOctokit-a85f76c7.css rel=stylesheet><link href=client/index-b0b6455a.css rel=stylesheet> <title>undefined</title> <script>// If `prefers-color-scheme` is not supported, fall back to light mode.
-      // In this case, light.css will be downloaded with `highest` priority.
-      if (typeof window !== "undefined" && typeof document !== "undefined" && "matchMedia" in window && window.matchMedia('(prefers-color-scheme: dark)').media === 'not all') {
-        document.documentElement.style.display = 'none';
-        document.head.insertAdjacentHTML(
-          'beforeend',
-          '<link rel="stylesheet" href={`${config.path}/themes/light.css`} onload="document.documentElement.style.display = \'\'">',
-        );
-      } </script> <link href=https://status.foxpress.cloud/themes/light.css rel=stylesheet media=(prefers-color-scheme:light)> <link href=https://status.foxpress.cloud/themes/dark.css rel=stylesheet media=(prefers-color-scheme:dark)><link href=https://status.foxpress.cloud/global.css rel=stylesheet><link href=https://raw.githubusercontent.com/upptime/upptime/master/assets/upptime-icon.svg rel=icon type=image/svg><link href=/logo-192.png rel=icon type=image/png> <link href=/client/client.c8d0bea6.js rel=modulepreload as=script crossorigin=use-credentials><link href=/client/client-31a52aa5.css rel=preload as=style><link href=/client/index.62694080.js rel=modulepreload as=script crossorigin=use-credentials><link href=/client/createOctokit.54977c6b.js rel=modulepreload as=script crossorigin=use-credentials><link href=/client/inject_styles.803b7e80.js rel=modulepreload as=script crossorigin=use-credentials><link href=/client/createOctokit-a85f76c7.css rel=preload as=style><link href=/client/index-b0b6455a.css rel=preload as=style></head> <body> <div id=sapper> <nav class=svelte-a08hsz><div class="svelte-a08hsz container"> <ul class=svelte-a08hsz> </ul></div> </nav> <main class=container> <header class=svelte-ngkazm> </header> <section class=svelte-8lnl4f><div class="svelte-68jxue loading"><svg class=svelte-68jxue height=38 stroke=#aaa width=38 xmlns=http://www.w3.org/2000/svg><g fill=none fill-rule=evenodd><g stroke-width=2 transform="translate(1 1)"><circle cx=18 cy=18 r=18 stroke-opacity=.5></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName=transform dur=1s from="0 18 18" repeatCount=indefinite to="360 18 18" type=rotate></animateTransform></path></g></g></svg></div> </section> <section class=svelte-8lnl4f><div class="svelte-68jxue loading"><svg class=svelte-68jxue height=38 stroke=#aaa width=38 xmlns=http://www.w3.org/2000/svg><g fill=none fill-rule=evenodd><g stroke-width=2 transform="translate(1 1)"><circle cx=18 cy=18 r=18 stroke-opacity=.5></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName=transform dur=1s from="0 18 18" repeatCount=indefinite to="360 18 18" type=rotate></animateTransform></path></g></g></svg></div> </section> <div class="svelte-fqsq6s f changed"><h2>Live Status</h2> <form class="svelte-fqsq6s f r"><div><input class=svelte-fqsq6s id=data_day name=d type=radio value=day><label class=svelte-fqsq6s for=data_day>24h</label></div> <div><input class=svelte-fqsq6s id=data_week name=d type=radio value=week checked><label class=svelte-fqsq6s for=data_week>7d</label></div> <div><input class=svelte-fqsq6s id=data_month name=d type=radio value=month><label class=svelte-fqsq6s for=data_month>30d</label></div> <div><input class=svelte-fqsq6s id=data_year name=d type=radio value=year><label class=svelte-fqsq6s for=data_year>1y</label></div> <div><input class=svelte-fqsq6s id=data_all name=d type=radio value=all><label class=svelte-fqsq6s for=data_all>all</label></div></form></div> <section class="svelte-fqsq6s live-status"><div class="svelte-68jxue loading"><svg class=svelte-68jxue height=38 stroke=#aaa width=38 xmlns=http://www.w3.org/2000/svg><g fill=none fill-rule=evenodd><g stroke-width=2 transform="translate(1 1)"><circle cx=18 cy=18 r=18 stroke-opacity=.5></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName=transform dur=1s from="0 18 18" repeatCount=indefinite to="360 18 18" type=rotate></animateTransform></path></g></g></svg></div> </section> <section><div class="svelte-68jxue loading"><svg class=svelte-68jxue height=38 stroke=#aaa width=38 xmlns=http://www.w3.org/2000/svg><g fill=none fill-rule=evenodd><g stroke-width=2 transform="translate(1 1)"><circle cx=18 cy=18 r=18 stroke-opacity=.5></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName=transform dur=1s from="0 18 18" repeatCount=indefinite to="360 18 18" type=rotate></animateTransform></path></g></g></svg></div> </section> <section><div class="svelte-68jxue loading"><svg class=svelte-68jxue height=38 stroke=#aaa width=38 xmlns=http://www.w3.org/2000/svg><g fill=none fill-rule=evenodd><g stroke-width=2 transform="translate(1 1)"><circle cx=18 cy=18 r=18 stroke-opacity=.5></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName=transform dur=1s from="0 18 18" repeatCount=indefinite to="360 18 18" type=rotate></animateTransform></path></g></g></svg></div></section></main> <footer class=svelte-jbr799><p>This page is <a href=https://github.com/foxpress-design/status>open source</a>, powered by <a href=https://upptime.js.org>Upptime</a></p> </footer></div> <script> try {
-        if (typeof window !== "undefined" && window.navigator && navigator.serviceWorker) {
-          navigator.serviceWorker.getRegistrations().then(function (registrations) {
-            for (let registration of registrations) {
-              registration.unregister();
-            }
-          });
-        }
-        if (typeof window !== "undefined" && "caches" in window) {
-          caches.keys().then(function (keyList) {
-            return Promise.all(
-              keyList.map(function (key) {
-                return caches.delete(key);
-              })
-            );
-          });
-        }
-      } catch (error) {} </script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>foxpress.cloud Status</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-card: #1a1d27;
+    --bg-hover: #1e2130;
+    --border: rgba(255,255,255,0.07);
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-muted: #64748b;
+    --green: #00d4aa;
+    --green-bg: rgba(0,212,170,0.08);
+    --green-border: rgba(0,212,170,0.2);
+    --red: #ff6b6b;
+    --red-bg: rgba(255,107,107,0.08);
+    --red-border: rgba(255,107,107,0.2);
+    --yellow: #fbbf24;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* Nav */
+  .nav {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 24px;
+  }
+  .nav-brand {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav a:hover { color: var(--text); }
+
+  /* Main */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* Overall status banner */
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .banner.ok {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+  }
+  .banner.down {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+  }
+  .banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .banner.ok .banner-dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .banner.down .banner-dot { background: var(--red); animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 4px var(--red); }
+    50% { box-shadow: 0 0 16px var(--red); }
+  }
+
+  /* Section headers */
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* Monitor list */
+  .monitors {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .monitor {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+    gap: 14px;
+  }
+  .monitor:last-child { border-bottom: none; }
+  .monitor:hover { background: var(--bg-hover); }
+
+  .monitor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .monitor-dot.up { background: var(--green); box-shadow: 0 0 6px rgba(0,212,170,0.4); }
+  .monitor-dot.down { background: var(--red); box-shadow: 0 0 6px rgba(255,107,107,0.4); }
+  .monitor-dot.degraded { background: var(--yellow); box-shadow: 0 0 6px rgba(251,191,36,0.4); }
+
+  .monitor-info { flex: 1; min-width: 0; }
+  .monitor-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .monitor-url {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .monitor-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .monitor-uptime {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .monitor-uptime.up { color: var(--green); }
+  .monitor-uptime.down { color: var(--red); }
+  .monitor-uptime.degraded { color: var(--yellow); }
+
+  .monitor-response {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* Uptime bars */
+  .monitor-bars {
+    display: flex;
+    gap: 1px;
+    height: 24px;
+    align-items: flex-end;
+  }
+  .bar {
+    width: 3px;
+    border-radius: 1px;
+    min-height: 4px;
+  }
+  .bar.up { background: var(--green); height: 100%; opacity: 0.6; }
+  .bar.down { background: var(--red); height: 100%; }
+  .bar.none { background: rgba(255,255,255,0.05); height: 40%; }
+
+  /* Incidents */
+  .incident {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .incident-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .incident-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .incident-meta {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 6px;
+    margin-left: 18px;
+  }
+
+  .no-incidents {
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 4px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-muted);
+  }
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-top-color: var(--text-dim);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Last updated */
+  .updated {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">foxpress.cloud</a>
+    <a href="https://foxpress.cloud">Home</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="status-banner" class="loading">
+    <div class="spinner"></div>
+    Loading status...
+  </div>
+
+  <div id="monitors-section" style="display:none">
+    <div class="section-title">Services</div>
+    <div id="monitors" class="monitors"></div>
+  </div>
+
+  <div id="incidents-section" style="display:none">
+    <div class="section-title">Active Incidents</div>
+    <div id="incidents"></div>
+  </div>
+
+  <div id="updated" class="updated"></div>
+</div>
+
+<div class="footer">
+  Powered by foxpress.cloud monitoring
+</div>
+
+<script>
+const OWNER = 'foxpress-design';
+const REPO = 'status';
+const API_BASE = `https://raw.githubusercontent.com/${OWNER}/${REPO}/master`;
+
+// Display-friendly names (hide raw IPs/ports from clients)
+const DISPLAY_NAMES = {
+  'foxpress.cloud': { name: 'Website', show: true },
+  'Server': { name: 'Server', show: true },
+  'cPanel': { name: 'Control Panel', show: true },
+  'Email (SMTP)': { name: 'Email', show: true }
+};
+
+async function loadStatus() {
+  try {
+    const [summaryRes, issuesRes] = await Promise.all([
+      fetch(`${API_BASE}/history/summary.json`),
+      fetch(`https://api.github.com/repos/${OWNER}/${REPO}/issues?state=open&labels=status`)
+    ]);
+
+    const summary = await summaryRes.json();
+    const issues = await issuesRes.json();
+
+    renderBanner(summary);
+    renderMonitors(summary);
+    renderIncidents(issues);
+
+    document.getElementById('updated').textContent =
+      'Last checked ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  } catch (err) {
+    document.getElementById('status-banner').innerHTML =
+      '<div class="banner down"><span class="banner-dot"></span>Unable to load status data</div>';
+    console.error(err);
+  }
+}
+
+function renderBanner(summary) {
+  const allUp = summary.every(s => parseFloat(s.uptimeDay) > 99);
+  const anyDown = summary.some(s => s.status === 'down' && parseFloat(s.uptimeDay) < 50);
+  const el = document.getElementById('status-banner');
+
+  if (anyDown) {
+    el.innerHTML = '<div class="banner down"><span class="banner-dot"></span>Some services are experiencing issues</div>';
+  } else if (!allUp) {
+    el.innerHTML = '<div class="banner down"><span class="banner-dot"></span>Some services are degraded</div>';
+  } else {
+    el.innerHTML = '<div class="banner ok"><span class="banner-dot"></span>All systems operational</div>';
+  }
+}
+
+function renderMonitors(summary) {
+  const container = document.getElementById('monitors');
+  const section = document.getElementById('monitors-section');
+  section.style.display = '';
+
+  summary.forEach(site => {
+    const display = DISPLAY_NAMES[site.name] || { name: site.name, show: true };
+    if (!display.show) return;
+
+    const uptime = parseFloat(site.uptimeDay);
+    const statusClass = uptime >= 99.5 ? 'up' : uptime >= 50 ? 'degraded' : 'down';
+    const responseTime = site.timeDay > 0 ? `${Math.round(site.timeDay)}ms` : '';
+
+    // Build uptime bar from dailyMinutesDown (last 30 days)
+    const bars = buildBars(site.dailyMinutesDown || {});
+
+    const div = document.createElement('div');
+    div.className = 'monitor';
+    div.innerHTML = `
+      <span class="monitor-dot ${statusClass}"></span>
+      <div class="monitor-info">
+        <div class="monitor-name">${display.name}</div>
+      </div>
+      <div class="monitor-bars">${bars}</div>
+      <div class="monitor-stats">
+        <span class="monitor-uptime ${statusClass}">${site.uptimeDay}</span>
+        ${responseTime ? `<span class="monitor-response">${responseTime}</span>` : ''}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function buildBars(dailyDown) {
+  const bars = [];
+  const today = new Date();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    const down = dailyDown[key] || 0;
+    if (down === 0) {
+      bars.push('<span class="bar up"></span>');
+    } else if (down > 0) {
+      bars.push('<span class="bar down"></span>');
+    } else {
+      bars.push('<span class="bar none"></span>');
+    }
+  }
+  return bars.join('');
+}
+
+function renderIncidents(issues) {
+  const container = document.getElementById('incidents');
+  const section = document.getElementById('incidents-section');
+
+  // Filter for actual incidents (not just any issue)
+  const incidents = issues.filter(i =>
+    i.labels && i.labels.some(l => l.name === 'status')
+  );
+
+  if (incidents.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = '';
+  incidents.forEach(issue => {
+    const div = document.createElement('div');
+    div.className = 'incident';
+    const date = new Date(issue.created_at).toLocaleDateString([], {
+      month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    div.innerHTML = `
+      <div class="incident-title"><span class="dot"></span>${issue.title}</div>
+      <div class="incident-meta">Opened ${date}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+loadStatus();
+// Refresh every 5 minutes
+setInterval(loadStatus, 300000);
+</script>
+</body>
+</html>
